@@ -1,3 +1,5 @@
-Integrantes<br> 
+<h1>Integrantes</h1>
+<br> 
 Gabriel Cortes Martinez 19TE0487*
-Kelly Jaqueline Guerrero Andrade 19TE0
+<br>
+Kelly Jaqueline Guerrero Andrade 19TE0565*

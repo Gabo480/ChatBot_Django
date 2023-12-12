@@ -27,4 +27,4 @@ def chat_view(request):
 
         return JsonResponse({'bot_response': bot_response})
 
-    return render(request, 'chatbot/chat.html')
+    return render(request, 'chat.html')

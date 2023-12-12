@@ -1,0 +1,43 @@
+<!-- chatbot/templates/chatbot/chat.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot con Django y OpenAI GPT-3</title>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-display">
+            <!-- Aquí se mostrarán las conversaciones -->
+        </div>
+        <div id="user-input-container">
+            <input type="text" id="user-input" placeholder="Escribe tu mensaje...">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var user_input = document.getElementById("user-input").value;
+
+            // Enviar la entrada del usuario al servidor
+            fetch('/chat/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}',  // Asegúrate de incluir el token CSRF
+                },
+                body: 'user_input=' + encodeURIComponent(user_input),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Mostrar la respuesta del chatbot
+                var chatDisplay = document.getElementById("chat-display");
+                chatDisplay.innerHTML += '<p><strong>Tú:</strong> ' + user_input + '</p>';
+                chatDisplay.innerHTML += '<p><strong>Chatbot:</strong> ' + data.bot_response + '</p>';
+            });
+        }
+    </script>
+</body>
+</html>
